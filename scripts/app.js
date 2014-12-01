@@ -3,7 +3,7 @@
 	var audioCtx = new AudioContext();
 	// console.log('sampleRate: ', audioCtx.sampleRate);
 	// start
-	init();
+	//init();
 
 	function init(){
 		var brownNoise = audioCtx.createBrownNoise();
@@ -20,11 +20,28 @@
 		lfo.connect(lfoGain);
 		lfoGain.connect(brownGain.gain);
 		brownGain.connect(audioCtx.destination);
+
+		var pinkNoise = audioCtx.createPinkNoise();
+		var pinkGain = audioCtx.createGain();
+		var pinkFilter = audioCtx.createBiquadFilter();
+		pinkGain.gain.value = 100;
+		pinkFilter.frequency.value = 1.618;
+		pinkNoise.connect(pinkFilter);
+		pinkFilter.connect(pinkGain);
+
+		var saw = audioCtx.createOscillator();
+		saw.type = saw.SAWTOOTH;
+		saw.frequency.value = 440.0;
+		var sawGain = audioCtx.createGain();
+		sawGain.gain.value = 0.2;
+
+		saw.start(0);
+		saw.connect(sawGain);
+		pinkGain.connect(saw.frequency);
+		sawGain.connect(audioCtx.destination);
 	}
-		
-		//osc.start(0);
-		//osc.stop(10);
-	}
+
+
 
 /* Audio Functions */
 	//create more of these audio functions to choose from

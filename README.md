@@ -1,5 +1,3 @@
-#Weather Music
+#Noisepage
 
-Transform weather into generated music.
-
-Get weather data from openweathermap.org and create synth using Web Audio API to generate music or 'music'
+random noise spatialization
