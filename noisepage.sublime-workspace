@@ -1,0 +1,1080 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"brow",
+				"brownNoise"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"get",
+				"getChannelData"
+			],
+			[
+				"creat",
+				"createBuffer"
+			],
+			[
+				"create",
+				"createBufferSource"
+			],
+			[
+				"audi",
+				"audioCtx"
+			],
+			[
+				"wether",
+				"weather_code"
+			],
+			[
+				"weather",
+				"weather_id"
+			],
+			[
+				"has",
+				"hasData"
+			],
+			[
+				"vco",
+				"vco2"
+			],
+			[
+				"inn",
+				"innerHTML"
+			],
+			[
+				"mouse",
+				"mouseOver"
+			],
+			[
+				"border",
+				"border-box"
+			],
+			[
+				"box",
+				"box-sizing"
+			],
+			[
+				"widn",
+				"winWidth"
+			],
+			[
+				"wid",
+				"winWidth"
+			],
+			[
+				"wind",
+				"winWidth"
+			],
+			[
+				"win",
+				"winWidth"
+			],
+			[
+				"bar",
+				"barHeight"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"load",
+				"loadAudio"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"sec",
+				"secret"
+			],
+			[
+				"pla",
+				"plain"
+			],
+			[
+				"af",
+				"affine"
+			],
+			[
+				"se",
+				"secret"
+			],
+			[
+				"doc",
+				"document"
+			],
+			[
+				"cip",
+				"cipher_text"
+			],
+			[
+				"ina",
+				"inarray	$.inArray()"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"num",
+				"numBoxes"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"nu",
+				"numgen"
+			],
+			[
+				"cls",
+				"className"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"bordr",
+				"border-radius"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"numbe",
+				"numBoxes"
+			],
+			[
+				"he",
+				"height	.height()"
+			],
+			[
+				"no",
+				"note_array"
+			],
+			[
+				"spli",
+				"split"
+			],
+			[
+				"spl",
+				"splitext"
+			],
+			[
+				"nt",
+				"notes"
+			],
+			[
+				"dir",
+				"dir_note"
+			],
+			[
+				"userna",
+				"user_name"
+			],
+			[
+				"note",
+				"note_test"
+			],
+			[
+				"user",
+				"user_name"
+			],
+			[
+				"audio",
+				"audio_player"
+			],
+			[
+				"fa",
+				"fake_data"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"all",
+				"all_same"
+			],
+			[
+				"print",
+				"print_html"
+			],
+			[
+				"e",
+				"escape"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"bac",
+				"backgroundColor"
+			],
+			[
+				"section-i",
+				"section-item"
+			],
+			[
+				"pading",
+				"padding-bottom"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"css",
+				"css	.css() - single"
+			],
+			[
+				"rep",
+				"repeat-y"
+			],
+			[
+				"bord",
+				"border-color"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"face",
+				"facebookURL"
+			],
+			[
+				"faceboo",
+				"facebookURL"
+			],
+			[
+				"backgr",
+				"background-size"
+			],
+			[
+				"tex",
+				"text-transform"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"fnt",
+				"font-weight"
+			],
+			[
+				"padin",
+				"padding-left"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"cons",
+				"console.	console.log()"
+			],
+			[
+				"str",
+				"str_replace"
+			],
+			[
+				"strto",
+				"strtolower"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"strok",
+				"stroke	strokeWeight"
+			],
+			[
+				"setup",
+				"setup	setup"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"bo",
+				"border-top"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"set",
+				"setup	setup"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/andrej/Git/weathermusic/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 7240,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/andrej/Git/weathermusic/index.html",
+			"settings":
+			{
+				"buffer_size": 542,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/andrej/Git/weathermusic/notes.txt",
+			"settings":
+			{
+				"buffer_size": 473,
+				"line_ending": "Unix",
+				"name": "notes"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ssj",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML5"
+			],
+			[
+				"seh",
+				"Set Syntax: HTML5"
+			],
+			[
+				"sst",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"ssap",
+				"Set Syntax: Apache Conf"
+			],
+			[
+				"clip",
+				"Clipboard Manager: Choose & Paste"
+			],
+			[
+				"cli",
+				"Clipboard Manager: Show History"
+			],
+			[
+				"ss",
+				"Set Syntax: HTML5"
+			],
+			[
+				"ssht",
+				"Set Syntax: HTML"
+			],
+			[
+				"snippet",
+				"Snippet: <canvas>"
+			],
+			[
+				"snipp",
+				"Snippet: <head>"
+			],
+			[
+				"snip",
+				"Snippet: <base>"
+			],
+			[
+				"ss h",
+				"Set Syntax: HTML5"
+			],
+			[
+				"lore",
+				"LoremIpsum: (30) lots"
+			],
+			[
+				"lorem",
+				"LoremIpsum: (15) some"
+			],
+			[
+				"term",
+				"Preferences: Terminal Settings – User"
+			],
+			[
+				"up",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"lis",
+				"Package Control: List Packages"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"html",
+				"Snippet: htmlboiler"
+			],
+			[
+				"boi",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"se",
+				"Set Syntax: HTML5"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"js",
+				"JSHint"
+			],
+			[
+				"set",
+				"Set Syntax: HTML5"
+			],
+			[
+				"set css",
+				"Set Syntax: CSS3"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ste",
+				"Set Syntax: HTML5"
+			],
+			[
+				"li",
+				"Package Control: List Packages"
+			],
+			[
+				"floo",
+				"Floobits - Join Workspace"
+			],
+			[
+				"flo",
+				"Floobits - Join Workspace"
+			],
+			[
+				"set ",
+				"Set Syntax: HTML"
+			],
+			[
+				"upda",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"paka",
+				"Preferences: Browse Packages"
+			],
+			[
+				"st",
+				"Set Syntax: HTML"
+			],
+			[
+				"titl",
+				"Convert Case: Title Case"
+			],
+			[
+				"word",
+				"Snippet: WordPress Enqueue Script"
+			],
+			[
+				"dea",
+				"Package Control: Disable Package"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/andrej/Git/weathermusic",
+		"/Users/andrej/Git/weathermusic/scripts",
+		"/Users/andrej/Git/weathermusic/snippets",
+		"/Users/andrej/Git/weathermusic/styles"
+	],
+	"file_history":
+	[
+		"/Users/andrej/Git/weathermusic/styles/app.css",
+		"/Users/andrej/Git/weathermusic/snippets/white-noise.js",
+		"/Users/andrej/Git/weathermusic/index.html",
+		"/Users/andrej/Git/weathermusic/snippets/frequency-modulator.js",
+		"/Users/andrej/Git/weathermusic/weathermusic.sublime-project",
+		"/Users/andrej/Documents/Web Projects/GSJ/GSJ 2014/grunt/package.json",
+		"/Users/andrej/Documents/Web Projects/GSJ/GSJ 2014/grunt/Gruntfile.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/459C7299-10F3-48F8-A1BF-F4D935285C9F/drupal.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/8B4186D1-A56E-442D-B3FA-32E9F7C94D26/autocomplete.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/6D609D21-B2D8-4CCF-A77F-57062AB17B55/ahah.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/829BD8A0-560C-4392-BE0B-ED3D7D6E5461/cron.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/E5E776ED-29E3-49BE-A347-ED31E95FB917/index.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/512322B6-D935-4FBE-B37F-29E541AF015C/content-single-ensemble.php",
+		"/Users/andrej/Desktop/JS/d3/bars/bars.html",
+		"/Users/andrej/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/andrej/Library/Application Support/Sublime Text 3/Packages/User/snippets/iife.sublime-snippet",
+		"/Users/andrej/Desktop/JS/canvas/design.js",
+		"/Users/andrej/Desktop/JS/canvas/index.html",
+		"/Users/andrej/Desktop/JS/canvas/main.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/BBE72C2B-302F-40DF-B3DC-5B65FCC7FEE0/admin-settings.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/D9CAF828-197D-4215-B9E9-9FFF87804ED8/events-manager-source.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/0C5CA1B5-FDF7-4AF9-BBBA-163EE1E34C77/events-manager.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/50648F61-C94C-494E-9ED7-C18DDAAB28D9/em-locations.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/23324071-C862-4105-8E60-5BA2BAEC141C/em-debug.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/F5495534-FA17-4304-8E36-0AC33419AE2E/em-functions.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/191F67D7-75A2-4C82-A928-611EAE9D98A1/events-manager.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/3FAE893B-5507-4CC0-929C-72B928EC23B5/em-location.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/1544DCCD-A4D2-4DC6-9E7E-8BAE58E21931/em-locations.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/9530CF9F-2DC1-478E-BB09-E510B32A29DF/config.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/A6C5409B-BC9A-48E0-B557-ACFCC55D3672/page.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/19252E00-9741-453B-A558-93DBA09E568B/functions.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/DEEC01EF-E0B8-4426-9252-5B6F0E67615E/events-manager.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/002C9845-CB68-4291-ADEC-7E04D1FF57DB/attendees.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/180451B5-CB31-4963-B69A-9449722A02FD/geo.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/EDB29323-0DC8-488E-AB1F-6DE40D6B7696/geo.js",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/96F4F43F-095E-45AD-9CEE-212E97315C84/calendar-full.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/84025340-757E-4F40-AE0E-1C2239406E14/categories-list.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/D9EF2D7F-0C9D-44F4-896A-7DA81CD507F0/events-calendar.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/48BD3245-4517-4327-91B1-7032BE2EE026/events-search.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/30541A53-1B0B-49CA-82FB-BC58CA40725C/content-single-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/FB50BAF9-F6F8-4C32-AD4F-ADB27B2CB3C8/content-products.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/10306E35-1A56-499C-86F5-6CCD833F1928/content-products.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/C133B12A-CEC9-4B57-B3B4-450E53932102/archive-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/01E65758-DCA2-45B2-B9DB-701DDA46ABDF/custom.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/58624FBE-1E42-4BD2-9CBE-E7DE777B5790/page-header.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/1E54019D-14A9-4952-8A97-361CE1D782DE/content-single-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/9F366DB3-4D00-414A-964C-B663991D2A15/single-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/15636570-ED81-413B-AAA2-6624BFF9F032/archive-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/D7FB9B19-F477-4FF3-A3D0-8CAC66997A19/content-single-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/16222E66-FC22-4CB4-8FE2-993CDFBE41E5/content-single-event.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/55A92EEC-6490-45C2-B2FC-9875BBDF92D8/content-single-ensemble.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/1ADDBFE0-40ED-42A1-9B8A-1608D3A4DDB0/single-product.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/90CDC6F4-776E-474C-9B5D-BA933AA93266/single-ensemble.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/675DE7D5-51E1-4EE8-A7CA-F8346FC225D6/template-home.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/F654F032-65A4-4127-809B-07A2EAB7A9DA/template-home.php",
+		"/Users/andrej/Library/Caches/Cleanup At Startup/Transmit/2F97C730-4013-4E4F-B790-4396C8C9D330/.htaccess",
+		"/Users/andrej/Git/GNT/serve.py",
+		"/Users/andrej/Library/Application Support/Sublime Text 3/Packages/User/Terminal.sublime-settings",
+		"/Users/andrej/.zcompdump-Garden Gnome-5.0.5",
+		"/tmp/subl stdin wck5NS.txt",
+		"/Users/andrej/hellow",
+		"/tmp/subl stdin VTrKFX.txt",
+		"/Users/andrej/Downloads/ASDFPixelSort/ASDFPixelSort.pde",
+		"/Users/andrej/Library/Application Support/Sublime Text 3/Settings/License.sublime_license",
+		"/Users/andrej/floobits/welcome.md",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/596ABA8D-4101-4BC9-8291-CEEEFEB3A1C4/index.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/BE8229E0-F032-49D2-B06D-93C86F7E9A19/all.css",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/D90674A9-8E45-4C6D-8CA3-2E3C89B93425/jquery.main.js",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/490B430B-ECD3-4032-B1E1-0FA3AFD0358B/.htaccess",
+		"/bin/subl",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Packages/User/new/Default (OSX).sublime-keymap",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/E245F979-F0DD-4D4D-A836-DCD26C7FFBA6/webaudio.html",
+		"/Users/irukandji/.ssh/known_hosts",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/DAE03896-5182-40DE-9E96-C7DB34E9018B/webaudio.html",
+		"/Users/irukandji/Desktop/webaudio.html",
+		"/Users/irukandji/Desktop/cipher.html",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/1A7BC283-38D9-48E3-910D-2D4AC92CA37C/config.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/DAF69C8B-1ADA-4786-9D1C-5DA816F3E4EE/.htaccess",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/DB470835-E8E3-448F-B4FD-EFA610EE959B/config.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/BF00C0DF-DB3F-484B-863B-C522C7B7C921/config.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/C5525095-5B22-4393-A3B1-74280D3E5BA6/.htaccess",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/A0F7490F-4078-488B-8A6A-DA8CE2EDDAF2/config.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/6D5447B4-D964-4BF4-A494-4306C71F4636/.htaccess",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/D77E2F9D-1FB4-43FA-9019-319BCBEAD1DF/view.phtml",
+		"/Users/irukandji/Desktop/number.html",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Local/Session.sublime_metrics",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Installed Packages/HTML5.sublime-package",
+		"/Users/irukandji/Library/Application Support/Sublime Text 3/Installed Packages/HTML Snippets.sublime-package",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/0193736C-1460-48BA-8D56-53925993A872/index.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/61039D95-8258-4237-925A-4C60A1A2BDD7/index.php",
+		"/Users/irukandji/Downloads/processing-3d/lights_opengl/lights_opengl.pde",
+		"/Users/irukandji/Downloads/processing-3d/lights_p3d/lights_p3d.pde",
+		"/Users/irukandji/Downloads/processing-3d/box_p3d/box_p3d.pde",
+		"/Users/irukandji/Downloads/Ex_Files_IntDataViz_Process/Exercise Files/End_Solution/End_Solution.pde",
+		"/Users/irukandji/Downloads/Ex_Files_IntDataViz_Process/Exercise Files/Ch3_Challenge/Ch3_Challenge.pde",
+		"/Users/irukandji/Downloads/Ex_Files_IntDataViz_Process/Exercise Files/Ch3_Solution/Ch3_Solution.pde",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/D3205429-45A0-4629-B7B5-9E7A6B9735DE/.htaccess",
+		"/Users/irukandji/Documents/Web Projects/git/squares/site.js",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/B93579AB-CD36-4FF3-A72B-3361280FC30E/index.py",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/A898100E-AE58-417C-87EE-8EAD5CA1AAE1/randhtml.cgi",
+		"/Users/irukandji/Desktop/andrejhronco.com-Oct-2014",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/AAA459D9-3806-4B09-8110-648541F37894/.htaccess",
+		"/Users/irukandji/Git/GNT/index.py",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/3597EC36-BA76-4F31-8FDD-87C4B7BCC638/success.phtml",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/19FEC22E-DF98-49BE-B09C-96595A5F4600/footer.phtml",
+		"/Users/irukandji/Downloads/4110245024/4110245024.html",
+		"/Users/irukandji/Git/GNT/session/data.json",
+		"/Users/irukandji/Git/GNT/.gitignore",
+		"/Users/irukandji/floobits/startssl-ca.pem",
+		"/Users/irukandji/floobits/persistent.json",
+		"/Users/irukandji/Git/GNT/answer.py",
+		"/Users/irukandji/floobits/welcome.md",
+		"/Users/irukandji/.floorc.json",
+		"/Users/irukandji/Google Drive/automatic-writing/automatic-writting-9129141150pm.txt",
+		"/Users/irukandji/Documents/Python/serve.py",
+		"/Users/irukandji/Documents/Python/index.html",
+		"/Users/irukandji/Downloads/index.py",
+		"/Users/irukandji/Documents/Gilmour Craves/BayCityCapital/2014/grunt/assets/less/bootstrap/close.less",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/CC2DA48C-D59D-4B75-A765-01D631F9E1EB/view.phtml",
+		"/Applications/Sublime Text.app/Contents/MacOS/changelog.txt",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/3F5B3B2F-23EE-4003-83DD-EB8DAE2FC0EF/styles.css",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/C02AA000-2037-4112-AA15-74015DD26371/footer.php",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/581CC3AA-EB71-4C20-A170-C31C217C1DB3/styles.css",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/0E4BC5D4-4DBB-4BC9-963D-E33E27BC8ECC/styles.css",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/E46FAEC0-B4D8-4698-8A22-387A657F763F/view.phtml",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/E7CD88F6-C924-46B4-9928-52F0A98EDE65/view.phtml"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"means",
+			"data",
+			"<!-- Optional: Set a scope to limit where the snippet will trigger -->",
+			"4",
+			"cloud",
+			"dolore",
+			"$\\n",
+			"wes",
+			"wes\n\n\n",
+			"wes",
+			"Lorem",
+			" \n",
+			" ",
+			"bob",
+			"andrej",
+			"dolor",
+			"logo",
+			"faq",
+			"store",
+			"buy",
+			"ga(",
+			"highlight tiles",
+			"mc3",
+			"login =",
+			"first",
+			".lower",
+			"j[",
+			"j.",
+			"j ",
+			"get_user",
+			"format_json",
+			"sprite",
+			"small2x",
+			"large2x",
+			"07",
+			"add-to-links",
+			".product-shop",
+			".product-image",
+			"product-shop",
+			"email",
+			"#nav",
+			"12px",
+			"70ab37",
+			".cms-page-view .col-main a",
+			".cms-page-view .col-main a[target=\"_blank\"]",
+			"Portfolio Companies",
+			"0095C8",
+			"h4",
+			"std_content",
+			".headerContent.sidebarContent a",
+			"width=\"20\"",
+			"width='20'",
+			"width='10'",
+			"232",
+			"516",
+			"headerContent",
+			"",
+			"category",
+			"594627",
+			"#D1B670",
+			"EF991F",
+			"footer",
+			"header",
+			"#slideshow",
+			"body",
+			"wrap",
+			".sidebar",
+			".post-list.archives li",
+			"zlib",
+			"wrap",
+			".col-sm-10",
+			"baordPast",
+			"baordActive",
+			"h6",
+			"h5",
+			"portfolio",
+			"portfolios",
+			"mobile",
+			"social",
+			"h3",
+			"body",
+			"http://www.biocision.com",
+			"http://www.biocision.com/",
+			"a>\n",
+			"\n<a h",
+			"\n",
+			"onmouseover=\"\" ",
+			"sidebar1",
+			"“",
+			"\"",
+			"”",
+			"Our history demonstrates Wells Fargo’s timeless strengths—security, reliability, innovation and progress—and our commitment to the communities we serve. Our history is a legacy and a promise that we are there for our customers, now and over time. ",
+			".current_page_item",
+			"'wp-content",
+			"#content-boxes-1",
+			"booking",
+			"banner",
+			"ad",
+			"TEMPLATE_DOMAIN",
+			"images/empty.gif",
+			"",
+			"font-family:'Trebuchet MS';"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"weather",
+			"DDD",
+			"",
+			"highlight-tiles",
+			"login",
+			"user[",
+			"user.",
+			"user ",
+			"get_user",
+			"small@2x",
+			"large@2x",
+			"15px",
+			"e45d50",
+			"00698C",
+			"h5",
+			"width=\"15\"",
+			"width=\"'15\"",
+			"width='15'",
+			"width='20'",
+			"240",
+			"500",
+			"",
+			"e6e6da",
+			"#292927",
+			"9f8e6c",
+			"boardPast",
+			"boardActive",
+			"h4",
+			"h3",
+			"team",
+			"h5",
+			"",
+			"a>",
+			"<a h",
+			"",
+			"\"",
+			".current-menu-item",
+			"'/wp-content",
+			"https://origin.ih.constantcontact.com/fs130/1101478781441/img/651.gif?ver=1393451586000",
+			"",
+			"font-family:Arial;"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/andrej/Git/weathermusic/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7240,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4415,
+								4415
+							]
+						],
+						"settings":
+						{
+							"hasHeader": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2186.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/andrej/Git/weathermusic/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 542,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								486,
+								486
+							]
+						],
+						"settings":
+						{
+							"hasHeader": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/andrej/Git/weathermusic/notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								249,
+								249
+							]
+						],
+						"settings":
+						{
+							"auto_name": "notes",
+							"hasHeader": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clipboard_manager":
+	{
+		"height": 373.0
+	},
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "noisepage.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 243.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
