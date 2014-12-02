@@ -15,8 +15,25 @@
 		noise(audioCtx,"brown", pan1);
 		noise(audioCtx,"white", pan2);
 		noise(audioCtx,"pink", pan3);
-	}
 
+		function counter(){
+			var n = 0;
+			// setInterval(function(){
+			// 	counter().count();
+			// },1000);
+			return {
+				count: function(){ return n++; },
+				reset: function(){ n = 0; }
+			};
+		}
+
+		var c = counter();
+		// var count = setInterval(function(){
+		// 			// c.count();
+		// 			console.log('counter:', c.count());
+		// 		},1000);
+		console.log('counter:', c.count());
+}
 /* Audio Functions */
 	function Modulator (type, freq, gain) {
 	  this.modulator = audioCtx.createOscillator();
