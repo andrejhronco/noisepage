@@ -13,10 +13,14 @@
 		var pan1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 		var pan2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
 		var pan3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
+		var pan4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
+		// var pan5 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 100});
 
 		noise(audioCtx,"brown", pan1);
 		noise(audioCtx,"pink", pan2);
 		noise(audioCtx,"pink", pan3);
+		noise(audioCtx,"brown", pan4);
+		// noise(audioCtx,"pink", pan5);
 
 }
 /* Audio Functions */
@@ -72,7 +76,7 @@
 		ng = context.createGain();
 
 		lfo = context.createOscillator();
-		lfo.frequency.value = Math.random() * .5; //controls the crazy
+		lfo.frequency.value = Math.random() * .5; //controls the crazy | values above 1000 connects to the depths of hell
 		lfog = context.createGain();
 		lfog.gain.value = Math.random() * 100;
 
@@ -113,7 +117,7 @@
 		// 	    z = 1 - Math.abs(x);
 		// 	panner.setPosition(x,y,z);
 		// }
-		panner.setPosition(position.x, position.y, position.z);
+		panner.setPosition(position.x, position.y, 1-Math.abs(position.x));
 		panner.setVelocity(100,0,100);
 
 		return panner;
