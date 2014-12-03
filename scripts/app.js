@@ -8,36 +8,21 @@
 	init();
 
 	function init(){
-		var pan1 = panner(audioCtx, {x: W/2, y: H/2, z: 100});
-		var pan2 = panner(audioCtx, {x: 0, y: H, z: 10});
-		var pan3 = panner(audioCtx, {x: W, y: 0, z: 100});
+		// var pcx = counter(1, 10, 10);
+		// console.log('pcx:',pcx);
+		var pan1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
+		var pan2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
+		var pan3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 
 		noise(audioCtx,"brown", pan1);
-		noise(audioCtx,"white", pan2);
+		noise(audioCtx,"pink", pan2);
 		noise(audioCtx,"pink", pan3);
 
-		function counter(){
-			var n = 0;
-			// setInterval(function(){
-			// 	counter().count();
-			// },1000);
-			return {
-				count: function(){ return n++; },
-				reset: function(){ n = 0; }
-			};
-		}
-
-		var c = counter();
-		// var count = setInterval(function(){
-		// 			// c.count();
-		// 			console.log('counter:', c.count());
-		// 		},1000);
-		console.log('counter:', c.count());
 }
 /* Audio Functions */
-	function Modulator (type, freq, gain) {
-	  this.modulator = audioCtx.createOscillator();
-	  this.gain = audioCtx.createGain();
+	function Modulator (context, type, freq, gain) {
+	  this.modulator = context.createOscillator();
+	  this.gain = contexto.createGain();
 	  this.modulator.type = type;
 	  this.modulator.frequency.value = freq;
 	  this.gain.gain.value = gain;
@@ -61,6 +46,29 @@
 			default:
 				break;
 		}
+		/*
+				var modulatorStackNode = [
+				    new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
+				    new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+				    new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
+				    new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+				    new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
+				].reduce(function (input, output) {
+				    input.gain.connect(output.modulator.frequency);
+				    return output;
+				});
+				
+				var osc = audioCtx.createOscillator();
+				osc.type = "sine";
+				osc.frequency.value = wd.temp;
+				modulatorStackNode.gain.connect(osc.frequency);
+
+				var filter = audioCtx.createBiquadFilter();
+				filter.frequency.value = wd.pressure;
+				filter.Q.value = 10;
+				osc.connect(filter);
+				filter.connect(audioCtx.destination);
+		*/
 		ng = context.createGain();
 
 		lfo = context.createOscillator();
@@ -97,13 +105,20 @@
 		listener.setOrientation(0,0,-1,0,1,0);
 		listener.setPosition(W/2, H/2, 300);
 
+		panner.panningModel = 'equalpower';
 		panner.setOrientation(1,0,0);
+		// function pan(event) {
+		// 	var x = this.valueAsNumber,
+		// 	    y = 0,
+		// 	    z = 1 - Math.abs(x);
+		// 	panner.setPosition(x,y,z);
+		// }
 		panner.setPosition(position.x, position.y, position.z);
 		panner.setVelocity(100,0,100);
 
 		return panner;
 	}
-
+	
 	function filter(context, type, freq){
 	/*
 			var pinkNoise = audioCtx.createPinkNoise();
@@ -140,6 +155,27 @@
 			minute: m,
 			second: s
 		};
+	}
+
+	function counter(min, max, speed){
+		var n = min || 0, max = max || 0, down = false;
+		return setInterval(function(){
+			if (n == max) {
+				down = true;
+			} else if(n == min) {
+				down = false;
+			}
+			if(down){ 
+				n--;
+			} else {
+				n++;	
+			}
+			//console.log('n:', n);
+			return n;
+			
+		}, speed);
+
+		
 	}
 
 	function print_data(data){
