@@ -8,7 +8,7 @@
 	init();
 
 	function init(){
-		// console.log('pcx:',counter(1, 10, 1000));
+		//console.log('pcx:',counter(1, 10, 1000));
 		var p1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 		var p2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
 		var p3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
@@ -39,14 +39,14 @@
 }
 /* Audio Functions */
 	function Modulator (context, type, freq, gain) {
-	  this.modulator = context.createOscillator();
-	  this.gain = contexto.createGain();
-	  this.modulator.type = type;
-	  this.modulator.frequency.value = freq;
-	  this.gain.gain.value = gain;
-	  this.modulator.connect(this.gain);
-	  this.modulator.start(0);
-	  console.log('Mod:', type, freq, gain);
+		this.modulator = context.createOscillator();
+		this.gain = contexto.createGain();
+		this.modulator.type = type;
+		this.modulator.frequency.value = freq;
+		this.gain.gain.value = gain;
+		this.modulator.connect(this.gain);
+		this.modulator.start(0);
+		console.log('Mod:', type, freq, gain);
 	}
 
 	function noise(context, type, pan, filter){
@@ -66,14 +66,14 @@
 		}
 		/*
 				var modulatorStackNode = [
-				    new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
-				    new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-				    new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
-				    new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-				    new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
+						new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
+						new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+						new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
+						new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+						new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
 				].reduce(function (input, output) {
-				    input.gain.connect(output.modulator.frequency);
-				    return output;
+						input.gain.connect(output.modulator.frequency);
+						return output;
 				});
 				
 				var osc = audioCtx.createOscillator();
@@ -202,19 +202,32 @@
 
 	function counter(min, max, speed){
 		var n = min || 0, max = max || 0, down = false;
-		return setInterval(function(){
-			if (n == max) {
-				down = true;
-			} else if(n == min) {
-				down = false;
+		// var timer = setInterval(function(){
+		// 	if (n == max) {
+		// 		down = true;
+		// 	} else if(n == min) {
+		// 		down = false;
+		// 	}
+		// 	if(down){ 
+		// 		n--;
+		// 	} else {
+		// 		n++;	
+		// 	}
+		// }, speed);
+		// return setInterval(arguments.callee, speed);
+		
+		var count = min;
+		var counterIncrement = 1;
+		var counter = setInterval(timer, speed); 
+
+		function timer() {
+			count += counterIncrement;
+			if(count == min || count == max ) {
+					counterIncrement = -counterIncrement;
 			}
-			if(down){ 
-				n--;
-			} else {
-				n++;	
-			}
-			// console.log('n:', n);
-		}, speed);		
+			//console.log(count);
+		}
+		return count;
 	}
 
 	function print_data(data){
