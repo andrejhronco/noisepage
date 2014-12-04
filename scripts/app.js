@@ -8,20 +8,34 @@
 	init();
 
 	function init(){
-		// var pcx = counter(1, 10, 10);
-		// console.log('pcx:',pcx);
-		var pan1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
-		var pan2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
-		var pan3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
-		var pan4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
+		// console.log('pcx:',counter(1, 10, 1000));
+		var p1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
+		var p2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
+		var p3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
+		var p4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
 		// var pan5 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 100});
 
-		noise(audioCtx,"brown", pan1);
-		noise(audioCtx,"pink", pan2);
-		noise(audioCtx,"pink", pan3);
-		noise(audioCtx,"brown", pan4);
+		var n1 = noise(audioCtx,"brown", p1.pan);
+		var n2 = noise(audioCtx,"pink", p2.pan);
+		var n3 = noise(audioCtx,"pink", p3.pan);
+		var n4 = noise(audioCtx,"brown", p4.pan);
 		// noise(audioCtx,"pink", pan5);
 
+		// create the preset obj
+		var preset = {
+			'n1': n1, 
+			'p1': p1.set,
+			'n2': n2, 
+			'p2': p2.set, 
+			'n3': n3, 
+			'p3': p3.set, 
+			'n4': n4, 
+			'p4': p4.set
+		};
+
+		// set localStorage preset on click
+		// localStorage.clear();
+		document.body.addEventListener('click', function(){ storage(preset); }, false);
 }
 /* Audio Functions */
 	function Modulator (context, type, freq, gain) {
@@ -35,9 +49,9 @@
 	  console.log('Mod:', type, freq, gain);
 	}
 
-	function noise(context, type, pan){
+	function noise(context, type, pan, filter){
 		//type = {type: "brown", gain: n}
-		var n, ng, lfo,lfog;
+		var n, ng, lfo, lfog, oset = {};
 		switch(type.toLowerCase()){
 			case "brown":
 				n = context.createBrownNoise();
@@ -94,13 +108,18 @@
 			ng.gain.value = 1;
 			ng.connect(context.destination);	
 		}
-		
+
+		//return current settings
+		oset['lfofreqval'] = lfo.frequency.value;
+		oset['lfogainval'] = lfog.gain.value;
+
+		return oset;
 	}
 
 	function panner(context, position, velocity){
 		//position = {x: x, y: y, z: z}
 		//velocity = {x: x, y: y, z: z}
-		var panner, listener; 
+		var panner, listener, pset = {}; 
 		panner = context.createPanner();
 		listener = context.listener;
 
@@ -120,7 +139,14 @@
 		panner.setPosition(position.x, position.y, 1-Math.abs(position.x));
 		panner.setVelocity(100,0,100);
 
-		return panner;
+		//return current settings
+		pset['panX'] = position.x;
+		pset['panY'] = position.y;
+		
+		return {
+			pan: panner,
+			set: pset
+		};
 	}
 	
 	function filter(context, type, freq){
@@ -151,14 +177,27 @@
 /* Utilities */
 	function time(){
 		var d = new Date(),
+				y = d.getYear(),
+				da = d.getDay(),
 				h = d.getHours(),
 				m = d.getMinutes(),
 				s = d.getSeconds()
 		return {
+			all: y + da + h + m + s,
+			year: y,
+			day: da,
 			hour: h,
 			minute: m,
 			second: s
 		};
+	}
+
+	function storage(obj){
+		var name = prompt("Preset Name: "), ostring = JSON.stringify(obj);
+		if(!name) return;
+		name += ' = ' + time().all.toString();
+		localStorage.setItem(name, ostring);
+		console.log('saved', name);
 	}
 
 	function counter(min, max, speed){
@@ -174,12 +213,8 @@
 			} else {
 				n++;	
 			}
-			//console.log('n:', n);
-			return n;
-			
-		}, speed);
-
-		
+			// console.log('n:', n);
+		}, speed);		
 	}
 
 	function print_data(data){
