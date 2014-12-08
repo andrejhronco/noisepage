@@ -9,6 +9,9 @@
 	// reload of every n seconds requires destroying the current set first, otherwise build-up occurs
 		// setInterval(init, 5000);
 
+	// reload of every n seconds requires destroying the current set first, otherwise build-up occurs
+	// setInterval(init, 5000);
+
 	function init(){
 		// var p1.x = preset['p1'].x || Math.random() * W;
 		var p1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
@@ -182,6 +185,7 @@
 	function create(){
 
 	}
+
 	function time(){
 		var d = new Date(),
 				y = d.getFullYear(),
@@ -211,7 +215,7 @@
 	function loadpreset(obj){
 		var name = prompt("Load Preset Named: "), ostring = JSON.parse(obj);
 		if (!name) return;
-		
+
 		// loop over obj
 		// assign to keys in return obj
 		// return obj 
