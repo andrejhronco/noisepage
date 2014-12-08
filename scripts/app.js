@@ -7,19 +7,20 @@
 	// start
 	init();
 
+	// reload of every n seconds requires destroying the current set first, otherwise build-up occurs
+	// setInterval(init, 5000);
+
 	function init(){
-		//console.log('pcx:',counter(1, 10, 1000));
+		// var p1.x = preset['p1'].x || Math.random() * W;
 		var p1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 		var p2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
 		var p3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 		var p4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
-		// var pan5 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 100});
 
-		var n1 = noise(audioCtx,"brown", p1.pan);
+		var n1 = noise(audioCtx,"pink", p1.pan);
 		var n2 = noise(audioCtx,"pink", p2.pan);
 		var n3 = noise(audioCtx,"pink", p3.pan);
-		var n4 = noise(audioCtx,"brown", p4.pan);
-		// noise(audioCtx,"pink", pan5);
+		var n4 = noise(audioCtx,"pink", p4.pan);
 
 		// create the preset obj
 		var preset = {
@@ -33,9 +34,13 @@
 			'p4': p4.set
 		};
 
-		// set localStorage preset on click
 		// localStorage.clear();
-		document.body.addEventListener('click', function(){ storage(preset); }, false);
+		// set localStorage preset on click
+		document.body.addEventListener('click', function(){ savepreset(preset); }, false);
+		// load localStorage preset on dblclick
+		// loadpreset needs to return a obj with param values in init() scope
+		// assign panner params to preset param or random * _ 
+		document.body.addEventListener('dblclick', function(){ loadpreset(preset); }, false);
 }
 /* Audio Functions */
 	function Modulator (context, type, freq, gain) {
@@ -175,6 +180,10 @@
 			// return sawGain;
 	}
 /* Utilities */
+	function create(){
+
+	}
+
 	function time(){
 		var d = new Date(),
 				y = d.getYear(),
@@ -192,12 +201,20 @@
 		};
 	}
 
-	function storage(obj){
-		var name = prompt("Preset Name: "), ostring = JSON.stringify(obj);
+	function savepreset(obj){
+		var name = prompt("Save Preset Named: "), ostring = JSON.stringify(obj);
 		if(!name) return;
 		name += ' = ' + time().all.toString();
 		localStorage.setItem(name, ostring);
 		console.log('saved', name);
+	}
+	function loadpreset(obj){
+		var name = prompt("Load Preset Named: "), ostring = JSON.parse(obj);
+		if (!name) return;
+
+		// loop over obj
+		// assign to keys in return obj
+		// return obj 
 	}
 
 	function counter(min, max, speed){
