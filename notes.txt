@@ -1,0 +1,8 @@
+app:
+	combine noise(), panner(), savepreset(), and loadpreset() into 'class'
+
+	add mouse control to panning: random on load and then controllable via mouse x/y
+
+visual (options):
+	stacked horizontal lines with opacity controlled by lfo
+	control pattern generation using lfo, freq, etc. of andrejhronco.com D3

@@ -19,10 +19,10 @@
 		var p3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
 		var p4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
 
-		var n1 = noise(audioCtx,"pink", p1.pan);
-		var n2 = noise(audioCtx,"pink", p2.pan);
-		var n3 = noise(audioCtx,"pink", p3.pan);
-		var n4 = noise(audioCtx,"pink", p4.pan);
+		var n1 = noise(audioCtx, "pink", p1.pan);
+		var n2 = noise(audioCtx, "pink", p2.pan);
+		var n3 = noise(audioCtx, "pink", p3.pan);
+		var n4 = noise(audioCtx, "pink", p4.pan);
 
 		// create the preset obj
 		var preset = {
@@ -72,32 +72,32 @@
 				break;
 		}
 		/*
-				var modulatorStackNode = [
-						new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
-						new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-						new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
-						new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-						new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
-				].reduce(function (input, output) {
-						input.gain.connect(output.modulator.frequency);
-						return output;
-				});
-				
-				var osc = audioCtx.createOscillator();
-				osc.type = "sine";
-				osc.frequency.value = wd.temp;
-				modulatorStackNode.gain.connect(osc.frequency);
+			var modulatorStackNode = [
+					new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
+			].reduce(function (input, output) {
+					input.gain.connect(output.modulator.frequency);
+					return output;
+			});
+			
+			var osc = audioCtx.createOscillator();
+			osc.type = "sine";
+			osc.frequency.value = wd.temp;
+			modulatorStackNode.gain.connect(osc.frequency);
 
-				var filter = audioCtx.createBiquadFilter();
-				filter.frequency.value = wd.pressure;
-				filter.Q.value = 10;
-				osc.connect(filter);
-				filter.connect(audioCtx.destination);
+			var filter = audioCtx.createBiquadFilter();
+			filter.frequency.value = wd.pressure;
+			filter.Q.value = 10;
+			osc.connect(filter);
+			filter.connect(audioCtx.destination);
 		*/
 		ng = context.createGain();
 
 		lfo = context.createOscillator();
-		lfo.frequency.value = Math.random() * .5; //controls the crazy | values above 1000 connects to the depths of hell
+		lfo.frequency.value = Math.random() * 20; //controls the crazy | values above 1000 connects to the depths of hell
 		lfog = context.createGain();
 		lfog.gain.value = Math.random() * 100;
 
