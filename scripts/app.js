@@ -97,7 +97,7 @@
 		ng = context.createGain();
 
 		lfo = context.createOscillator();
-		lfo.frequency.value = Math.random() * 20; //controls the crazy | values above 1000 connects to the depths of hell
+		lfo.frequency.value = Math.random() * 500; //controls the crazy | values above 1000 connects to the depths of hell
 		lfog = context.createGain();
 		lfog.gain.value = Math.random() * 100;
 
