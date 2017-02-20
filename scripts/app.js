@@ -1,193 +1,283 @@
-(function(){
-	var AudioContext = window.AudioContext || window.webkitAudioContext;
-	var audioCtx = new AudioContext();
-	var W = window.innerWidth;
-	var H = window.innerHeight;
-	
-	// start
-	init();
-	// reload of every n seconds requires destroying the current set first, otherwise build-up occurs
-		// setInterval(init, 5000);
+/*
+	on load: create random amount of noise / panner sets with random noise type value
+	change frequency values via mouse / midi / data.gui
+	populate dat.gui based off of random creation
 
-	// reload of every n seconds requires destroying the current set first, otherwise build-up occurs
-	// setInterval(init, 5000);
+	'refresh all'f function
 
-	function init(){
-		// var p1.x = preset['p1'].x || Math.random() * W;
-		var p1 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
-		var p2 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 10});
-		var p3 = panner(audioCtx, {x: Math.random() * W, y: Math.random() * H, z: 100});
-		var p4 = panner(audioCtx, {x: Math.random() * W/2, y: Math.random() * H/2, z: 10});
+	noiseControl is where dat.gui is created and set
 
-		var n1 = noise(audioCtx, "pink", p1.pan);
-		var n2 = noise(audioCtx, "pink", p2.pan);
-		var n3 = noise(audioCtx, "pink", p3.pan);
-		var n4 = noise(audioCtx, "pink", p4.pan);
+*/
 
-		// create the preset obj
-		var preset = {
-			'n1': n1, 
-			'p1': p1.set,
-			'n2': n2, 
-			'p2': p2.set, 
-			'n3': n3, 
-			'p3': p3.set, 
-			'n4': n4, 
-			'p4': p4.set
-		};
 
-		// localStorage.clear();
-		// set localStorage preset on click
-		document.body.addEventListener('click', function(){ savepreset(preset); }, false);
-		// load localStorage preset on dblclick
-		// loadpreset needs to return a obj with param values in init() scope
-		// assign panner params to preset param or random * _ 
-		document.body.addEventListener('dblclick', function(){ loadpreset(preset); }, false);
-	}
-/* Audio Functions */
-	function Modulator (context, type, freq, gain) {
-		this.modulator = context.createOscillator();
-		this.gain = contexto.createGain();
-		this.modulator.type = type;
-		this.modulator.frequency.value = freq;
-		this.gain.gain.value = gain;
-		this.modulator.connect(this.gain);
-		this.modulator.start(0);
-		console.log('Mod:', type, freq, gain);
-	}
+// set init lfo/g lets to 0
+// makeNoise() is init, called on load and then onChange, contains all noise() instances
+// on gui change set lfo/g values and pass them to makeNoise()/noise()
+// might need a func on gui change that returns all values, pass these into noise() and call makeNoise()
+/*
+var first = true
+// var maxChannelCount = Tone.context.destination.maxChannelCount;
+var maxChannelCount = 8
+// console.log('Tone.context', Tone.context);
+// if set to max 8 it works fine in Chrome, but this line
+// breaks the audio if the sound card has got more than 8 channels
+Tone.context.destination.channelCount = maxChannelCount;
+// Tone.context.destination.channelCountMode = "explicit";
+// Tone.context.destination.channelInterpretation = "discrete";
 
-	function noise(context, type, pan, filter){
-		//type = {type: "brown", gain: n}
-		var n, ng, lfo, lfog, oset = {};
-		switch(type.toLowerCase()){
-			case "brown":
-				n = context.createBrownNoise();
-				break;
-			case "white":
-				n = context.createWhiteNoise();
-				break;
-			case "pink":
-				n = context.createPinkNoise();
-			default:
-				break;
+var channelMerger = Tone.context.createChannelMerger(maxChannelCount);
+// channelMerger.channelCount = 1;
+channelMerger.channelCountMode = "explicit";
+channelMerger.channelInterpretation = "discrete";
+channelMerger.connect(Tone.context.destination);
+
+// create osc
+let oscillators = []
+for(var i = 0; i < maxChannelCount; i++){
+  var oscillator = Tone.context.createOscillator();
+  // oscillator.connect(channelMerger, 0, i);
+  oscillator.type = 'sawtooth'
+  oscillator.frequency.value = (i + 1) * 0.15
+  oscillator.start(0);
+  oscillators.push(oscillator)
+
+}
+// console.log('oscillator', oscillators);
+
+function setChannels(collection){
+	let channels = [0,1,2,3,4,5,6,7]
+	channels.sort(() => 0.5 - Math.random())
+	// console.log('channels', channels);
+	oscillators.map( (osc, index) => {
+		// console.log('channel index', channels[index]);
+		// console.log('osc freq', osc);
+		if(!first) osc.disconnect()
+		osc.connect(channelMerger, 0, channels[index])
+	})
+	first = false
+}
+
+setInterval(() => {
+	setChannels(oscillators)
+}, 5000)
+*/
+
+// add gain to each noise
+// add gui to mod frequency
+
+(function(Tone){
+	const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
+				noiseTypes = ['pink', 'pink', 'brown', 'white'],
+				letters = ['A', 'B', 'C', 'D', 'E', 'F']
+
+	let preset = [{
+			type: 'brown',
+			volume: random(),
+			panRate: random([1,10]),
+			modRate: random([1,10])
+		},{
+			type: 'pink',
+			volume: random(),
+			panRate: random([1,10]),
+			modRate: random([1,10])
+		},{
+			type: 'white',
+			volume: random(),
+			panRate: random([1,10]),
+			modRate: random([1,10])
+	}]
+
+	let interval = 10000, intervalID
+
+	let noiseSets = makeNoiseSet(preset)
+
+	// DAT GUI
+	let gui = new dat.GUI(),
+			controls = createControls(noiseSets)
+
+	addGUI(controls, noiseSets)
+
+	gui.add(controls, 'randomize')
+	gui.add(controls, 'randomizer').onChange((active) => {
+		if(intervalID) clearInterval(intervalID)
+		if(active){
+			intervalID = setInterval(() => {
+				randomizer()
+			}, controls.interval)
+			console.log('turning on randomizer')
+		} else {
+			console.log('turning off randomizer')
 		}
-		/*
-			var modulatorStackNode = [
-					new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
-					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
-					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
-					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
-			].reduce(function (input, output) {
-					input.gain.connect(output.modulator.frequency);
-					return output;
-			});
-			
-			var osc = audioCtx.createOscillator();
-			osc.type = "sine";
-			osc.frequency.value = wd.temp;
-			modulatorStackNode.gain.connect(osc.frequency);
+	}).listen()
+	gui.add(controls, 'interval', 1000, 60000)
 
-			var filter = audioCtx.createBiquadFilter();
-			filter.frequency.value = wd.pressure;
-			filter.Q.value = 10;
-			osc.connect(filter);
-			filter.connect(audioCtx.destination);
-		*/
-		ng = context.createGain();
+	gui.add(controls, 'start')
+	gui.add(controls, 'stop')
 
-		lfo = context.createOscillator();
-		lfo.frequency.value = Math.random() * 500; //controls the crazy | values above 1000 connects to the depths of hell
-		lfog = context.createGain();
-		lfog.gain.value = Math.random() * 100;
+// gui.remember(controls);
 
-		lfo.start(0);
-		lfo.connect(lfog);
-		lfog.connect(ng.gain);
+function createControls(noiseSets){
+	let controls = {
+		randomizer : false,
+		randomize : randomizer,
+		interval : interval,
+		start : noiseSets.startAll,
+		stop : () => {
+			if(intervalID) clearInterval(intervalID)
+			noiseSets.stopAll()
+		}
+	}
 
-		if(pan){ //gain is low when pan is enabled
-			n.connect(pan);
-			pan.connect(ng);
-			ng.gain.value = 10;
-			ng.connect(context.destination);
-		} else{
-			n.connect(ng);
-			ng.gain.value = 1;
-			ng.connect(context.destination);	
+	noiseSets.sets.forEach((set, i) => {
+		controls['volume'+ letters[i]] = noiseSets.sets[i].gain.gain.value
+		controls['panRate'+ letters[i]] = noiseSets.sets[i].pan.frequency.value
+		controls['modRate'+ letters[i]] = noiseSets.sets[i].mod.frequency.value
+	})
+
+	return controls
+}
+
+function addGUI(controls, noiseSets){
+	noiseSets.sets.map((set, i) => {
+		let noise = gui.addFolder('Noise ' + letters[i] + ' (' + set.noise.type + ')')
+		noise.open()
+
+		noise.add(controls, 'volume'+letters[i], 0.0, 1.0).step(0.1).onChange((value) => {
+			set.gain.gain.setValueAtTime(value, 0)
+		}).listen();
+
+		noise.add(controls, 'panRate'+letters[i], 1, 10).onChange((value) => {
+			set.pan.frequency.setValueAtTime(value, 0)
+		}).listen();
+
+		noise.add(controls, 'modRate'+letters[i], 1, 500).onChange((value) => {
+			set.mod.frequency.setValueAtTime(value, 0)
+		}).listen();
+	})
+}
+
+function randomizer(){
+	interval = controls.interval
+	noiseSets.sets.map( (noiseSet, i) => {
+		console.log('\nnoise'+letters[i])
+		noiseSet.noise.type = noiseTypes[random([0,noiseTypes.length-1], true)]
+		noiseSet.pan.type = waveTypes[random([0,waveTypes.length-1], true)]
+
+		switch(random([0,2], true)){
+			case 0:
+				noiseSet.pan.set({'frequency': random([1,10])}, interval / random([1000,interval]))
+				break;
+			case 1:
+				noiseSet.pan.set({'frequency': random([1,10])}, interval)
+				break;
+			case 2:
+				noiseSet.pan.frequency.value = random([1,10])
+		}
+		// update gui
+		controls['panRate'+letters[i]] = noiseSet.pan.frequency.value
+
+		console.log('pan freq', noiseSet.pan.frequency.value)
+
+		noiseSets.sets.map( noiseSet => noiseSet.pan.depth.value = random(1))
+/*
+		switch(random([0,2], true)){
+			case 0:
+				noiseSet.noise.set({'volume': random([-50, 0])}, interval / random([1000,interval]))
+				break;
+			case 1:
+				noiseSet.noise.set({'volume': random([-50, 0])}, interval)
+				break;
+			case 2:
+				noiseSet.noise.volume.value = random([-50, 0])
 		}
 
-		//return current settings
-		oset['lfofreqval'] = lfo.frequency.value;
-		oset['lfogainval'] = lfog.gain.value;
+		// update gui
+		controls['volume'+letters[i]] = noiseSet.noise.volume.value
 
-		return oset;
+		console.log('noise vol', noiseSet.noise.volume.value)
+*/
+		switch(random([0,2], true)){
+			case 0:
+				noiseSet.mod.set({'frequency': random([1,500]), 'volume': random([-50,0])}, interval / random([1000,interval]))
+				break;
+			case 1:
+				noiseSet.mod.set({'frequency': random([1,500]), 'volume': random([-50,0])}, interval)
+				break;
+			case 2:
+				noiseSet.mod.frequency.value = random([1,500])
+				noiseSet.mod.volume.value = random([-5,0])
+		}
+
+		// update gui
+		controls['modRate'+letters[i]] = noiseSet.mod.frequency.value
+
+		console.log('mod freq', noiseSet.mod.frequency.value)
+		console.log('mod volume', noiseSet.mod.volume.value)
+
+		noiseSet.mod.frequency.type = waveTypes[random([0,waveTypes.length-1], true)]
+
+		// noiseSet.pitchShift.value = random([1,12], true)
+		let partials = Array.from({length: random([1,5], true)}).map(item => random())
+		if(random([0,1], true)) noiseSet.mod.partials = partials
+
+	})
+}
+})(Tone);
+
+function makeNoiseSet(preset){
+	let sets = preset.map( setting => {
+		return makeNoise(setting)
+	})
+
+	return {
+		sets: sets,
+		startAll: () => {
+			sets.forEach(n => n.start())
+		},
+		stopAll: () => {
+			sets.forEach(n => n.stop())
+		}
 	}
+}
 
-	function panner(context, position, velocity){
-		//position = {x: x, y: y, z: z}
-		//velocity = {x: x, y: y, z: z}
-		var panner, listener, pset = {}; 
-		panner = context.createPanner();
-		listener = context.listener;
+function makeNoise(settings) {
+	let noise = new Tone.Noise(settings.type),
+			pan = new Tone.AutoPanner(settings.panRate),
+			mod = new Tone.Oscillator(settings.modRate),
+			gain = new Tone.Gain(settings.volume)
+			// pitchShift = new Tone.PitchShift(random(12))
 
-		listener.dopplerFactor = 1;
-		listener.speedOfSound = 343.3;
-		listener.setOrientation(0,0,-1,0,1,0);
-		listener.setPosition(W/2, H/2, 300);
+	mod.connect(noise.volume)
+	// mod.connect(pan.frequency)
+	// noise.chain(pan, pitchShift, Tone.Master)
+	noise.chain(gain, pan, Tone.Master)
 
-		panner.panningModel = 'equalpower';
-		panner.setOrientation(1,0,0);
-		// function pan(event) {
-		// 	var x = this.valueAsNumber,
-		// 	    y = 0,
-		// 	    z = 1 - Math.abs(x);
-		// 	panner.setPosition(x,y,z);
-		// }
-		panner.setPosition(position.x, position.y, 1-Math.abs(position.x));
-		panner.setVelocity(100,0,100);
+	return {
+		noise: noise,
+		gain: gain,
+		pan: pan,
+		mod: mod,
+		// pitchShift: pitchShift,
+		start: () => {
+			pan.start()
+			noise.start()
+			mod.start()
 
-		//return current settings
-		pset['panX'] = position.x;
-		pset['panY'] = position.y;
-		
-		return {
-			pan: panner,
-			set: pset
-		};
+			return this
+		},
+		stop: () => {
+			pan.stop()
+			noise.stop()
+			mod.stop()
+
+			return this
+		}
 	}
-	
-	function filter(context, type, freq){
-	/*
-			var pinkNoise = audioCtx.createPinkNoise();
-			var pinkGain = audioCtx.createGain();
-			var pinkFilter = audioCtx.createBiquadFilter();
-			pinkGain.gain.value = 100;
-			pinkFilter.frequency.value = 1.618;
-			pinkNoise.connect(pinkFilter);
-			pinkFilter.connect(pinkGain);
+}
 
-			var saw = audioCtx.createOscillator();
-			// type
-			saw.type = saw.SAWTOOTH;
-			//freq
-			saw.frequency.value = 150.0;
-			var sawGain = audioCtx.createGain();
-			sawGain.gain.value = 0.2;
-
-			saw.start(0);
-			saw.connect(sawGain);
-			pinkGain.connect(saw.frequency);
-			sawGain.connect(audioCtx.destination);
-			*/
-			// return sawGain;
-	}
-/* Utilities */
-	function create(){
-
-	}
-
+/*
 	function time(){
-		var d = new Date(),
+		let d = new Date(),
 				y = d.getFullYear(),
 				mo = d.getMonth(),
 				da = d.getDay(),
@@ -204,69 +294,45 @@
 			second: s
 		};
 	}
+*/
 
-	function savepreset(obj){
-		var name = prompt("Save Preset Named: "), ostring = JSON.stringify(obj);
-		if(!name) return;
-		name += ' = ' + time().all.toString();
-		localStorage.setItem(name, ostring);
-		console.log('saved', name);
-	}
-	function loadpreset(obj){
-		var name = prompt("Load Preset Named: "), ostring = JSON.parse(obj);
-		if (!name) return;
-
-		// loop over obj
-		// assign to keys in return obj
-		// return obj 
-	}
-
-	function counter(min, max){
-		var n = min || 0, max = max || 0, down = false;
-		// var timer = setInterval(function(){
-		// 	if (n == max) {
-		// 		down = true;
-		// 	} else if(n == min) {
-		// 		down = false;
-		// 	}
-		// 	if(down){ 
-		// 		n--;
-		// 	} else {
-		// 		n++;	
-		// 	}
-		// }, speed);
-		// return setInterval(arguments.callee, speed);
-		
-		var count = min;
-		var counterIncrement = 1;
-		var counter = setInterval(timer, speed); 
-
-		function timer() {
-			count += counterIncrement;
-			if(count == min || count == max ) {
-					counterIncrement = -counterIncrement;
-			}
-			//console.log(count);
-		}
-		return count;
-	}
-
+/*
 	function print_data(data){
-		var info = document.createElement('div');
+		let info = document.createElement('div');
 		for(p in data){
 			info.innerHTML += p + ' : ' + data[p] + '<br>';
 		}
 		document.body.appendChild(info);
 	}
+*/
 
-	/* ios enable sound output */
+function random(range = 1, int = false){
+	let num
+
+	if(Array.isArray(range)){
+		if(int){
+			num = Math.floor( Math.random() * (range[1] + 1 - range[0]) + range[0] );
+		} else {
+			num = Math.random() * (range[1] - range[0]) + range[0];
+		}
+	} else {
+		if(int){
+			num = Math.floor(Math.random() * range)
+		} else {
+			num = Math.random() * range
+		}
+	}
+	return num
+}
+
+/*
+	// ios enable sound output
 	window.addEventListener('touchstart', function(){
 		//create empty buffer
-		var buffer = audioCtx.createBuffer(1, 1, 22050);
-		var source = audioCtx.createBufferSource();
+		let buffer = audioCtx.createBuffer(1, 1, 22050);
+		let source = audioCtx.createBufferSource();
 		source.buffer = buffer;
 		source.connect(audioCtx.destination);
 		source.start(0);
 	}, false);
-		
-})();
+*/
