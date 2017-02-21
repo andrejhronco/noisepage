@@ -82,7 +82,11 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	let gui = new dat.GUI(),
 			controls = createControls(noiseSets)
 
-	addGUI(controls, noiseSets)
+	gui.add(controls, 'start')
+	gui.add(controls, 'stop')
+
+	gui.add(controls, 'recordStart')
+	gui.add(controls, 'recordStop')
 
 	gui.add(controls, 'randomize')
 	gui.add(controls, 'randomizer').onChange((active) => {
@@ -98,12 +102,6 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	}).listen()
 	gui.add(controls, 'interval', 1, 60)
 
-	gui.add(controls, 'start')
-	gui.add(controls, 'stop')
-
-	gui.add(controls, 'recordStart')
-	gui.add(controls, 'recordStop')
-
 	gui.add(controls, 'presetName')
 	gui.add(controls, 'save')
 	gui.add(controls, 'load', getStoredPresets()).onChange(value => {
@@ -111,6 +109,8 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 		setValues(preset, noiseSets.sets, controls)
 	}).listen()
 	gui.add(controls, 'tinyURL')
+
+	addGUI(controls, noiseSets)
 
 	// read state from URL or setState from on load
 	if(document.location.hash) {
@@ -332,7 +332,7 @@ function setState(sets){
 	})
 
 	addPresetToURL(state)
-	printValues(state)
+	//printValues(state)
 }
 
 function setValues(state, sets, controls){
