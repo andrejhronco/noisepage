@@ -47,9 +47,6 @@ setInterval(() => {
 */
 
 /* TODO
-	save presets,
-	load presets,
-	load preset from URL
 	better visuals : https://github.com/fluuuid/labs/blob/master/lines/Line.js
 */
 let state = {};
@@ -144,16 +141,17 @@ function createControls(noiseSets){
 		},
 		recordStart: () => {
 			if(recorder) recorder.clear()
-			recorder = new Recorder(Tone.Master, {workerPath: 'scripts/recorderjs/recorderWorker.js'})
+			recorder = new Recorder(makeMaster(noiseSets.sets), {workerPath: 'scripts/recorderjs/recorderWorker.js'})
 			recorder.record()
 		},
 		recordStop: () => {
 			recorder.stop()
-			recorder.clear()
+
 			recorder.exportWAV((blob) => {
 				var url = URL.createObjectURL(blob);
 				Recorder.forceDownload(blob, 'noise-' + new Date().getTime() + '.wav')
 			})
+			recorder.clear()
 		}
 	}
 
@@ -277,6 +275,14 @@ function makeNoiseSet(preset){
 	}
 }
 
+function makeMaster(noiseSets){
+	let master = new Tone.Volume(-5)
+
+	noiseSets.map(set => set.volume.connect(master))
+
+	return master
+}
+
 function makeNoise(settings) {
 	let noise = new Tone.Noise(settings.type),
 			pan = new Tone.AutoPanner(random(settings.panRate)),
@@ -289,7 +295,7 @@ function makeNoise(settings) {
 	volume.range = settings.volume
 
 	mod.connect(noise.volume)
-	noise.chain(volume, pan, Tone.Master)
+	noise.chain(pan, volume, Tone.Master)
 
 	return {
 		noise: noise,
