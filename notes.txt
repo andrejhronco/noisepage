@@ -1,8 +1,22 @@
 app:
-	combine noise(), panner(), savepreset(), and loadpreset() into 'class'
+	savepreset(), and loadpreset()
 
 	add mouse control to panning: random on load and then controllable via mouse x/y
 
 visual (options):
 	stacked horizontal lines with opacity controlled by lfo
 	control pattern generation using lfo, freq, etc. of andrejhronco.com D3
+
+
+function() {
+	var state = this.props.machine;
+	history.pushState(null, null, '#' + encodeURIComponent(JSON.stringify(state)));
+}
+
+function() {
+	var state = this.props.machine;
+	var url = document.location.protocol + "//" + document.location.host + document.location.pathname + "#" + encodeURIComponent(JSON.stringify(state));
+	url = encodeURIComponent(url);
+
+	window.open("http://tinyurl.com/api-create.php?url=" + url, "_blank", "width=300,height=100");
+}
