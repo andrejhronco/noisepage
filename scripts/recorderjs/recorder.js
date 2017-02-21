@@ -7,8 +7,7 @@
     var bufferLen = config.bufferLen || 4096;
     this.context = source.context;
     this.node = (this.context.createScriptProcessor ||
-                 this.context.createJavaScriptNode).call(this.context,
-                                                         bufferLen, 2, 2);
+                 this.context.createJavaScriptNode).call(this.context,bufferLen, 2, 2);
     var worker = new Worker(config.workerPath || WORKER_PATH);
     worker.postMessage({
       command: 'init',
@@ -75,13 +74,15 @@
   };
 
   Recorder.forceDownload = function(blob, filename){
-    var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    var link = window.document.createElement('a');
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = url;
+    link.style = 'display: none';
     link.href = url;
     link.download = filename || 'output.wav';
-    var click = document.createEvent("Event");
-    click.initEvent("click", true, true);
-    link.dispatchEvent(click);
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
   window.Recorder = Recorder;

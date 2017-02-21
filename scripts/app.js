@@ -75,12 +75,11 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 			modRate: [1,1000]
 	}]
 
+	let recorder
+
 	let interval = 10, intervalID
 
 	let noiseSets = makeNoiseSet(preset)
-
-	// save initial state
-	setState(noiseSets.sets)
 
 	// DAT GUI
 	let gui = new dat.GUI(),
@@ -105,16 +104,25 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	gui.add(controls, 'start')
 	gui.add(controls, 'stop')
 
+	gui.add(controls, 'recordStart')
+	gui.add(controls, 'recordStop')
+
 	gui.add(controls, 'presetName')
 	gui.add(controls, 'save')
 	gui.add(controls, 'load', getStoredPresets()).onChange(value => {
 		let preset = localStorage.getObject(value)
 		setValues(preset, noiseSets.sets, controls)
 	}).listen()
+	gui.add(controls, 'tinyURL')
 
-// gui.remember(controls);
-
-console.log('controls', controls)
+	// read state from URL or setState from on load
+	if(document.location.hash) {
+		state = readPresetFromURL()
+		setValues(state, noiseSets.sets, controls)
+	} else {
+		// save initial state
+		setState(noiseSets.sets)
+	}
 
 function createControls(noiseSets){
 	let controls = {
@@ -130,7 +138,23 @@ function createControls(noiseSets){
 		save: function() {
 			saveStateToLocal(this.presetName)
 		},
-		load: ['']
+		load: [],
+		tinyURL: () => {
+			getTinyURL(state)
+		},
+		recordStart: () => {
+			if(recorder) recorder.clear()
+			recorder = new Recorder(Tone.Master, {workerPath: 'scripts/recorderjs/recorderWorker.js'})
+			recorder.record()
+		},
+		recordStop: () => {
+			recorder.stop()
+			recorder.clear()
+			recorder.exportWAV((blob) => {
+				var url = URL.createObjectURL(blob);
+				Recorder.forceDownload(blob, 'noise-' + new Date().getTime() + '.wav')
+			})
+		}
 	}
 
 	noiseSets.sets.forEach((set, i) => {
@@ -314,11 +338,15 @@ function setValues(state, sets, controls){
 		} else {
 			sets[index][paramList[0]][paramList[1]] = state[item]
 		}
+		if(paramList[1] === 'volume'){
+			controls[paramList[0] + '.' + letters[index]] = state[item]
+		} else {
+			controls[paramList[0] + '.' + paramList[1] + '.' + letters[index]] = state[item]
+		}
 
-		controls[paramList[0] + '.' + paramList[1] + '.' + letters[index]] = state[item]
-
-	console.log('::', ...paramList, '<>', state[item])
+	//console.log('::', ...paramList, '<>', state[item])
 	})
+	addPresetToURL(state)
 }
 
 function addPresetToURL(state) {
@@ -329,7 +357,7 @@ function readPresetFromURL(){
 	return JSON.parse(decodeURIComponent(document.location.hash.slice(1)));
 }
 
-function saveTinyURL(state) {
+function getTinyURL(state) {
 	var url = document.location.protocol + "//" + document.location.host + document.location.pathname + "#" + encodeURIComponent(JSON.stringify(state));
 	url = encodeURIComponent(url);
 
