@@ -47,28 +47,30 @@ setInterval(() => {
 */
 
 /* TODO
+	update state on UI change
+	mutlichannel spatialization
 	better visuals : https://github.com/fluuuid/labs/blob/master/lines/Line.js
 */
 let state = {};
 const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
-			noiseTypes = ['pink', 'pink', 'white', 'brown', 'brown'],
+			noiseTypes = ['pink', 'pink', 'white', 'brown', 'brown', 'pink', 'brown'],
 			letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 (function(Tone){
 	let preset = [{
 			type: 'brown',
 			volume: [-30,0],
-			panRate: [1,10],
+			panRate: [0.1,1.0],
 			modRate: [1,1000]
 		},{
 			type: 'pink',
 			volume: [-30,0],
-			panRate: [1,10],
+			panRate: [1.0,2.0],
 			modRate: [1,1000]
 		},{
 			type: 'white',
 			volume: [-30,0],
-			panRate: [1,10],
+			panRate: [2.0,3.0],
 			modRate: [1,1000]
 	}]
 
@@ -79,7 +81,9 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	let noiseSets = makeNoiseSet(preset)
 
 	// DAT GUI
-	let gui = new dat.GUI(),
+	let gui = new dat.GUI({
+    		width : 270
+			}),
 			controls = createControls(noiseSets)
 
 	gui.add(controls, 'start')
@@ -90,14 +94,15 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 
 	gui.add(controls, 'randomize')
 	gui.add(controls, 'randomizer').onChange((active) => {
+		console.log('randomizer change', active)
 		if(intervalID) clearInterval(intervalID)
 		if(active){
 			intervalID = setInterval(() => {
 				randomizer()
 			}, controls.interval * 1000)
-			console.log('turning on randomizer')
+			console.log('* turning on randomizer')
 		} else {
-			console.log('turning off randomizer')
+			console.log('* turning off randomizer')
 		}
 	}).listen()
 	gui.add(controls, 'interval', 1, 60)
@@ -127,13 +132,15 @@ function createControls(noiseSets){
 		randomize : randomizer,
 		interval : interval,
 		start : noiseSets.startAll,
-		stop : () => {
+		stop : function() {
 			if(intervalID) clearInterval(intervalID)
 			noiseSets.stopAll()
+			this.randomizer = false
 		},
 		presetName: 'preset',
 		save: function() {
 			saveStateToLocal(this.presetName)
+			console.log('* ', this.presetName, 'saved to storage')
 		},
 		load: [],
 		tinyURL: () => {
@@ -268,9 +275,11 @@ function makeNoiseSet(preset){
 		sets: sets,
 		startAll: () => {
 			sets.forEach(n => n.start())
+			Tone.Transport.start("+0.1")
 		},
 		stopAll: () => {
 			sets.forEach(n => n.stop())
+			Tone.Transport.stop();
 		}
 	}
 }
@@ -339,18 +348,19 @@ function setValues(state, sets, controls){
 	Object.keys(state).map(item => {
 		let index = item.split('_')[0], paramList = item.slice(2).split('.')
 
-		if(paramList[2]){
-			sets[index][paramList[0]][paramList[1]][paramList[2]] = state[item]
-		} else {
-			sets[index][paramList[0]][paramList[1]] = state[item]
-		}
 		if(paramList[1] === 'volume'){
 			controls[paramList[0] + '.' + letters[index]] = state[item]
 		} else {
 			controls[paramList[0] + '.' + paramList[1] + '.' + letters[index]] = state[item]
 		}
 
-	//console.log('::', ...paramList, '<>', state[item])
+		if(paramList[2]){
+			sets[index][paramList[0]][paramList[1]].rampTo(state[item], 1.0)
+		} else {
+			sets[index][paramList[0]][paramList[1]] = state[item]
+		}
+
+	// console.log('::', ...paramList, '<>', state[item])
 	})
 	addPresetToURL(state)
 }
@@ -375,7 +385,7 @@ function saveStateToLocal(name){
 }
 
 function getStoredPresets() {
-	return Object.keys(localStorage)
+	return Object.keys(localStorage).sort((a,b) => a.split('-')[1] - b.split('-')[1])
 }
 
 function printValues(state){

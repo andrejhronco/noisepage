@@ -34,7 +34,8 @@ function drawWaveform(values){
 		var x = canvasWidth * (i / len);
 		var y = val * canvasHeight;
 		waveContext.lineTo(x, y);
-    // waveContext.ellipse(x, y, val * 50, val * 50, 45 * Math.PI/180, 0, 2 * Math.PI);
+		// waveContext.lineTo(x-val * 150, y+val * 150);
+    // waveContext.ellipse(x, y, val * 5, val * 5, 45 * Math.PI/180, 0, 2 * Math.PI);
     // waveContext.save()
     // waveContext.translate(canvasWidth/2, canvasHeight/2)
     // waveContext.lineTo(y, x);
