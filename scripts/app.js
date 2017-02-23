@@ -2,7 +2,6 @@
 var first = true
 // var maxChannelCount = Tone.context.destination.maxChannelCount;
 var maxChannelCount = 8
-// console.log('Tone.context', Tone.context);
 // if set to max 8 it works fine in Chrome, but this line
 // breaks the audio if the sound card has got more than 8 channels
 Tone.context.destination.channelCount = maxChannelCount;
@@ -13,24 +12,16 @@ var channelMerger = Tone.context.createChannelMerger(maxChannelCount);
 // channelMerger.channelCount = 1;
 channelMerger.channelCountMode = "explicit";
 channelMerger.channelInterpretation = "discrete";
-channelMerger.connect(Tone.context.destination);
+channelMerger.connect(Tone.Master());
 
 // create osc
-let oscillators = []
-for(var i = 0; i < maxChannelCount; i++){
-  var oscillator = Tone.context.createOscillator();
-  // oscillator.connect(channelMerger, 0, i);
-  oscillator.type = 'sawtooth'
-  oscillator.frequency.value = (i + 1) * 0.15
-  oscillator.start(0);
-  oscillators.push(oscillator)
+let oscillators = Array.from({length: maxChannelCount}).map((_, i) => {
+	return new Tone.Oscillator((i + 1) * 80, "sawtooth").toMaster()
+})
 
-}
 // console.log('oscillator', oscillators);
 
 function setChannels(collection){
-	let channels = [0,1,2,3,4,5,6,7]
-	channels.sort(() => 0.5 - Math.random())
 	// console.log('channels', channels);
 	oscillators.map( (osc, index) => {
 		// console.log('channel index', channels[index]);
@@ -64,12 +55,12 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 			modRate: [1,1000]
 		},{
 			type: 'pink',
-			volume: [-30,0],
+			volume: [-40,0],
 			panRate: [1.0,2.0],
 			modRate: [1,1000]
 		},{
 			type: 'white',
-			volume: [-30,0],
+			volume: [-50,0],
 			panRate: [2.0,3.0],
 			modRate: [1,1000]
 	}]
@@ -79,6 +70,8 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	let interval = 10, intervalID
 
 	let noiseSets = makeNoiseSet(preset)
+
+	let userPresets
 
 	// DAT GUI
 	let gui = new dat.GUI({
@@ -108,12 +101,14 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 
 	gui.add(controls, 'presetName')
 	gui.add(controls, 'save')
-	gui.add(controls, 'load', getStoredPresets()).listen().onChange(value => {
-		let preset = localStorage.getObject(value)
-		setValues(preset, noiseSets.sets, controls)
-	})
+	gui.add(controls, 'load', userPresets = getStoredPresets()).listen().onChange(value => loadPreset(value))
 	gui.add(controls, 'rampInterval').listen()
 	gui.add(controls, 'tinyURL')
+
+	function loadPreset(name){
+		let preset = localStorage.getObject(name)
+		setValues(preset, noiseSets.sets, controls)
+	}
 
 	addGUI(controls, noiseSets)
 
@@ -158,6 +153,8 @@ function createControls(noiseSets){
 			recorder.record()
 		},
 		recordStop: () => {
+			if(!recorder) return
+
 			recorder.stop()
 
 			recorder.exportWAV((blob) => {
@@ -165,6 +162,7 @@ function createControls(noiseSets){
 				Recorder.forceDownload(blob, 'noise-' + new Date().getTime() + '.wav')
 			})
 			recorder.clear()
+			recorder = undefined
 		}
 	}
 
