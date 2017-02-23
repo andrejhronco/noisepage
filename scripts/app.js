@@ -93,8 +93,7 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	gui.add(controls, 'recordStop')
 
 	gui.add(controls, 'randomize')
-	gui.add(controls, 'randomizer').onChange((active) => {
-		console.log('randomizer change', active)
+	gui.add(controls, 'randomizer').listen().onChange((active) => {
 		if(intervalID) clearInterval(intervalID)
 		if(active){
 			intervalID = setInterval(() => {
@@ -104,18 +103,24 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 		} else {
 			console.log('* turning off randomizer')
 		}
-	}).listen()
+	})
 	gui.add(controls, 'interval', 1, 60)
 
 	gui.add(controls, 'presetName')
 	gui.add(controls, 'save')
-	gui.add(controls, 'load', getStoredPresets()).onChange(value => {
+	gui.add(controls, 'load', getStoredPresets()).listen().onChange(value => {
 		let preset = localStorage.getObject(value)
 		setValues(preset, noiseSets.sets, controls)
-	}).listen()
+	})
+	gui.add(controls, 'rampInterval').listen()
 	gui.add(controls, 'tinyURL')
 
 	addGUI(controls, noiseSets)
+
+	let controllers = gui.__controllers.reduce((controllers, control) => {
+			controllers[control.property] = control
+			return controllers
+	}, {})
 
 	// read state from URL or setState from on load
 	if(document.location.hash) {
@@ -135,7 +140,7 @@ function createControls(noiseSets){
 		stop : function() {
 			if(intervalID) clearInterval(intervalID)
 			noiseSets.stopAll()
-			this.randomizer = false
+			controllers.randomizer.setValue(false)
 		},
 		presetName: 'preset',
 		save: function() {
@@ -143,6 +148,7 @@ function createControls(noiseSets){
 			console.log('* ', this.presetName, 'saved to storage')
 		},
 		load: [],
+		rampInterval: 1,
 		tinyURL: () => {
 			getTinyURL(state)
 		},
@@ -178,25 +184,25 @@ function addGUI(controls, noiseSets){
 		let noise = gui.addFolder('Noise ' + letters[i])
 		noise.open()
 
-		noise.add(controls, 'noise.type.'+letters[i], [ 'pink', 'brown', 'white' ]).onChange((value) => {
+		noise.add(controls, 'noise.type.'+letters[i], [ 'pink', 'brown', 'white' ]).listen().onChange((value) => {
 			set.noise.type = value
-		}).listen();
+		});
 
-		noise.add(controls, 'pan.type.'+letters[i], waveTypes).onChange((value) => {
+		noise.add(controls, 'pan.type.'+letters[i], waveTypes).listen().onChange((value) => {
 			set.pan.type = value
-		}).listen();
+		});
 
-		noise.add(controls, 'volume.'+letters[i], set.volume.range[0], set.volume.range[1]).onChange((value) => {
+		noise.add(controls, 'volume.'+letters[i], set.volume.range[0], set.volume.range[1]).listen().onChange((value) => {
 			set.volume.volume.setValueAtTime(value, 0)
-		}).listen();
+		});
 
-		noise.add(controls, 'pan.frequency.'+letters[i], set.pan.range[0], set.pan.range[1]).onChange((value) => {
+		noise.add(controls, 'pan.frequency.'+letters[i], set.pan.range[0], set.pan.range[1]).listen().onChange((value) => {
 			set.pan.frequency.setValueAtTime(value, 0)
-		}).listen();
+		});
 
-		noise.add(controls, 'mod.frequency.'+letters[i], set.mod.range[0], set.mod.range[1]).onChange((value) => {
+		noise.add(controls, 'mod.frequency.'+letters[i], set.mod.range[0], set.mod.range[1]).listen().onChange((value) => {
 			set.mod.frequency.setValueAtTime(value, 0)
-		}).listen();
+		});
 	})
 }
 
@@ -288,7 +294,7 @@ function makeMaster(noiseSets){
 	let master = new Tone.Volume(-5)
 
 	noiseSets.map(set => set.volume.connect(master))
-
+	// dispose of this after record done
 	return master
 }
 
@@ -355,7 +361,7 @@ function setValues(state, sets, controls){
 		}
 
 		if(paramList[2]){
-			sets[index][paramList[0]][paramList[1]].rampTo(state[item], 1.0)
+			sets[index][paramList[0]][paramList[1]].rampTo(state[item], controls.rampInterval)
 		} else {
 			sets[index][paramList[0]][paramList[1]] = state[item]
 		}
