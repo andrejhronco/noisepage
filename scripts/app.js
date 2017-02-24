@@ -63,7 +63,13 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 			volume: [-50,0],
 			panRate: [2.0,3.0],
 			modRate: [1,1000]
-	}]
+	}], sequence = {
+		'preset-1': 0,
+		'preset-5': 5,
+		'preset-1': 7,
+		'preset-15': 10,
+		'preset-1': 13
+	}
 
 	let recorder
 
@@ -84,6 +90,8 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 
 	gui.add(controls, 'recordStart')
 	gui.add(controls, 'recordStop')
+
+	gui.add(controls, 'startSequence')
 
 	gui.add(controls, 'randomize')
 	gui.add(controls, 'randomizer').listen().onChange((active) => {
@@ -106,6 +114,7 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	gui.add(controls, 'tinyURL')
 
 	function loadPreset(name){
+		if(Array.isArray(name)) return
 		let preset = localStorage.getObject(name)
 		setValues(preset, noiseSets.sets, controls)
 	}
@@ -126,6 +135,11 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 		setState(noiseSets.sets)
 	}
 
+// Tone.Transport.scheduleRepeat(() => {
+// 	let preset = userPresets[random(userPresets.length, true)]
+// 	loadPreset(preset)
+// }, "2n", "1m");
+
 function createControls(noiseSets){
 	let controls = {
 		randomizer : false,
@@ -140,7 +154,8 @@ function createControls(noiseSets){
 		presetName: 'preset',
 		save: function() {
 			saveStateToLocal(this.presetName)
-			console.log('* ', this.presetName, 'saved to storage')
+			console.log('*', this.presetName, 'saved to storage')
+			controllers.load.setValue(userPresets = getStoredPresets()).updateDisplay()
 		},
 		load: [],
 		rampInterval: 1,
@@ -151,6 +166,7 @@ function createControls(noiseSets){
 			if(recorder) recorder.clear()
 			recorder = new Recorder(makeMaster(noiseSets.sets), {workerPath: 'scripts/recorderjs/recorderWorker.js'})
 			recorder.record()
+			console.log('* recording')
 		},
 		recordStop: () => {
 			if(!recorder) return
@@ -163,6 +179,9 @@ function createControls(noiseSets){
 			})
 			recorder.clear()
 			recorder = undefined
+		},
+		startSequence: () => {
+			scheduleSequence(sequence)
 		}
 	}
 
@@ -201,6 +220,19 @@ function addGUI(controls, noiseSets){
 		noise.add(controls, 'mod.frequency.'+letters[i], set.mod.range[0], set.mod.range[1]).listen().onChange((value) => {
 			set.mod.frequency.setValueAtTime(value, 0)
 		});
+	})
+}
+
+
+function scheduleSequence(sequence){
+	console.log('* sequence starting')
+	Object.keys(sequence).map(part => {
+		let startTime = sequence[part]
+
+		Tone.Transport.schedule(function(time){
+			loadPreset(part)
+			console.log('* part', part, time)
+		}, startTime);
 	})
 }
 
