@@ -63,13 +63,27 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 			volume: [-50,0],
 			panRate: [2.0,3.0],
 			modRate: [1,1000]
-	}], sequence = {
-		'preset-1': 0,
-		'preset-5': 5,
-		'preset-1': 7,
-		'preset-15': 10,
-		'preset-1': 13
-	}
+	}],
+	sequence = [
+		{preset: 'preset-2', time: 0, rampTime: 1},
+		{preset: 'preset-6', time: 3, rampTime: 3},
+		{preset: 'preset-2', time: 7, rampTime: 3},
+		{preset: 'preset-4', time: 10, rampTime: 3},
+		{preset: 'preset-10', time: 12, rampTime: 1},
+		{preset: 'preset-2', time: 13.5, rampTime: 1},
+		{preset: 'preset-11', time: 16.5, rampTime: 1},
+		{preset: 'preset-2', time: 19, rampTime: 2},
+		{preset: 'preset-11', time: 22.5, rampTime: 1},
+		{preset: 'preset-2', time: 24, rampTime: 2},
+		{preset: 'preset-11', time: 26.5, rampTime: 1},
+		{preset: 'preset-12', time: 27.5, rampTime: 1},
+		{preset: 'preset-13', time: 28.5, rampTime: 1},
+		{preset: 'preset-12', time: 29.5, rampTime: 1},
+		{preset: 'preset-13', time: 30.5, rampTime: 1},
+		{preset: 'preset-15', time: 32, rampTime: 1},
+		{preset: 'preset-14', time: 33, rampTime: 1},
+		{preset: 'preset-15', time: 34.5, rampTime: 1},
+	]
 
 	let recorder
 
@@ -101,7 +115,7 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 				randomizer()
 			}, controls.interval * 1000)
 			console.log('* turning on randomizer')
-		} else {
+		} else if(intervalID) {
 			console.log('* turning off randomizer')
 		}
 	})
@@ -116,6 +130,7 @@ const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'],
 	function loadPreset(name){
 		if(Array.isArray(name)) return
 		let preset = localStorage.getObject(name)
+		if(!preset) return
 		setValues(preset, noiseSets.sets, controls)
 	}
 
@@ -226,13 +241,12 @@ function addGUI(controls, noiseSets){
 
 function scheduleSequence(sequence){
 	console.log('* sequence starting')
-	Object.keys(sequence).map(part => {
-		let startTime = sequence[part]
-
+	sequence.forEach(part => {
 		Tone.Transport.schedule(function(time){
-			loadPreset(part)
-			console.log('* part', part, time)
-		}, startTime);
+			console.log('* part', part.preset, part.time, part.rampTime)
+			controls.rampInterval = part.rampTime
+			loadPreset(part.preset)
+		}, '+' + part.time);
 	})
 }
 
