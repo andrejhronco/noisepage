@@ -288,6 +288,7 @@ function randomizer(){
 			case 2:
 				noiseSet.volume.volume.value = random([noiseSet.volume.range[0],noiseSet.volume.range[1]])
 		}
+<<<<<<< HEAD
 
 		// update gui
 		controls['volume.'+letters[i]] = noiseSet.volume.volume.value
@@ -302,6 +303,51 @@ function randomizer(){
 			case 2:
 				noiseSet.mod.frequency.value = random([noiseSet.mod.range[0],noiseSet.mod.range[1]])
 				noiseSet.mod.volume.value = random([-10,0])
+=======
+		/*
+			var modulatorStackNode = [
+					new Modulator(audioCtx, "sawtooth", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "square", 100*Math.random(), 100*Math.random()),
+					new Modulator(audioCtx, "sine", 100*Math.random(), 100*Math.random())
+			].reduce(function (input, output) {
+					input.gain.connect(output.modulator.frequency);
+					return output;
+			});
+			
+			var osc = audioCtx.createOscillator();
+			osc.type = "sine";
+			osc.frequency.value = wd.temp;
+			modulatorStackNode.gain.connect(osc.frequency);
+
+			var filter = audioCtx.createBiquadFilter();
+			filter.frequency.value = wd.pressure;
+			filter.Q.value = 10;
+			osc.connect(filter);
+			filter.connect(audioCtx.destination);
+		*/
+		ng = context.createGain();
+
+		lfo = context.createOscillator();
+		lfo.frequency.value = Math.random() * 20; //controls the crazy | values above 1000 connects to the depths of hell
+		lfog = context.createGain();
+		lfog.gain.value = Math.random() * 100;
+
+		lfo.start(0);
+		lfo.connect(lfog);
+		lfog.connect(ng.gain);
+
+		if(pan){ //gain is low when pan is enabled
+			n.connect(pan);
+			pan.connect(ng);
+			ng.gain.value = 10;
+			ng.connect(context.destination);
+		} else{
+			n.connect(ng);
+			ng.gain.value = 1;
+			ng.connect(context.destination);	
+>>>>>>> parent of b9548cf... dat gui, phasing out presets
 		}
 
 		// update gui
