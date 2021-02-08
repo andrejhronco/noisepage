@@ -363,6 +363,31 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/andrej/Git/weathermusic/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 7240,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/andrej/Git/weathermusic/index.html",
+			"settings":
+			{
+				"buffer_size": 542,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/andrej/Git/weathermusic/notes.txt",
+			"settings":
+			{
+				"buffer_size": 473,
+				"line_ending": "Unix",
+				"name": "notes"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -564,11 +589,9 @@
 	],
 	"file_history":
 	[
-		"/Users/andrej/Git/weathermusic/notes.txt",
-		"/Users/andrej/Git/weathermusic/index.html",
-		"/Users/andrej/Git/weathermusic/scripts/app.js",
 		"/Users/andrej/Git/weathermusic/styles/app.css",
 		"/Users/andrej/Git/weathermusic/snippets/white-noise.js",
+		"/Users/andrej/Git/weathermusic/index.html",
 		"/Users/andrej/Git/weathermusic/snippets/frequency-modulator.js",
 		"/Users/andrej/Git/weathermusic/weathermusic.sublime-project",
 		"/Users/andrej/Documents/Web Projects/GSJ/GSJ 2014/grunt/package.json",
@@ -691,7 +714,9 @@
 		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/3F5B3B2F-23EE-4003-83DD-EB8DAE2FC0EF/styles.css",
 		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/C02AA000-2037-4112-AA15-74015DD26371/footer.php",
 		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/581CC3AA-EB71-4C20-A170-C31C217C1DB3/styles.css",
-		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/0E4BC5D4-4DBB-4BC9-963D-E33E27BC8ECC/styles.css"
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/0E4BC5D4-4DBB-4BC9-963D-E33E27BC8ECC/styles.css",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/E46FAEC0-B4D8-4698-8A22-387A657F763F/view.phtml",
+		"/Users/irukandji/Library/Caches/Cleanup At Startup/Transmit/E7CD88F6-C924-46B4-9928-52F0A98EDE65/view.phtml"
 	],
 	"find":
 	{
@@ -870,8 +895,99 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/andrej/Git/weathermusic/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7240,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4415,
+								4415
+							]
+						],
+						"settings":
+						{
+							"hasHeader": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2186.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/andrej/Git/weathermusic/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 542,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								486,
+								486
+							]
+						],
+						"settings":
+						{
+							"hasHeader": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/andrej/Git/weathermusic/notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								249,
+								249
+							]
+						],
+						"settings":
+						{
+							"auto_name": "notes",
+							"hasHeader": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
